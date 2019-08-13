@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * @author GenshenWang.nomico
- * @date 2018/3/2.
+ * @author Daihongwei
+ * @date 2019/8/13.
  */
 @Controller
 public class TestController {

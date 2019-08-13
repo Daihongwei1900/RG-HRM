@@ -9,7 +9,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">员工更改</h4>
+                <h4 class="modal-title">学生更改</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal update_emp_form">
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="update_department" class="col-sm-2 control-label">部门</label>
+                        <label for="update_department" class="col-sm-2 control-label">教师</label>
                         <div class="col-sm-8">
                             <div class="checkbox">
                                 <select class="form-control" name="departmentId" id="update_department">
@@ -61,18 +61,18 @@
 
 
 <script type="text/javascript">
-    <!-- ==========================员工修改操作=================================== -->
+    <!-- ==========================学生修改操作=================================== -->
     $(".emp_edit_btn").click(function () {
-        //1 获取点击修改员工的id与name;
+        //1 获取点击修改学生的id与name;
         var updateEmpId = $(this).parent().parent().find("td:eq(0)").text();
 
-        //2 根据id或name查询出对应员工信息进行回显；
+        //2 根据id或name查询出对应学生信息进行回显；
         $.ajax({
             url:"/hrms/emp/getEmpById/"+updateEmpId,
             type:"GET",
             success:function (result) {
                 if (result.code == 100){
-                    var emp = result.extendInfo.employee;
+                    var emp = result.extendInfo.student;
                     $("#update_static_empName").text(emp.empName);
                     $("#update_empEmail").val(emp.empEmail);
                     $(".emp-update-modal input[name=gender]").val([emp.gender]);
@@ -82,13 +82,13 @@
 
         });
 
-        //2 部门回显列表；
+        //2 教师回显列表；
         $.ajax({
             url:"/hrms/dept/getDeptName",
             type:"GET",
             success:function (result) {
                 if (result.code == 100){
-                    $.each(result.extendInfo.departmentList, function () {
+                    $.each(result.extendInfo.teacherList, function () {
                         var optEle = $("<option></option>").append(this.deptName).attr("value", this.deptId);
                         optEle.appendTo("#update_department");
                     });
@@ -124,7 +124,7 @@
             data:$(".update_emp_form").serialize(),
             success:function (result) {
                 if (result.code==100){
-                    alert("员工更改成功！");
+                    alert("学生更改成功！");
                     $(".emp-update-modal").modal("hide");
                     //跳转到当前页
                     var curPage = ${curPage};

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author GenshenWang.nomico
- * @date 2018/3/9.
+ * @author Daihongwei
+ * @date 2019/8/13.
  */
 @Controller
 @RequestMapping(value = "/hrms")

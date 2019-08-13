@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" id="company_logo" href="#">XXX公司LOGO</a>
+                <a class="navbar-brand" id="company_logo" href="#">南京邮电大学</a>
             </div>
 
             <div class="collapse navbar-collapse" id="hrms-navbar-collapse-1">

@@ -4,8 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * @author GenshenWang.nomico
- * @date 2018/3/7.
+ * @author Daihongwei
+ * @date 2019/8/13.
  */
 @Controller
 @RequestMapping(value = "/hrms")

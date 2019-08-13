@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>部门管理页面</title>
+    <title>教师管理页面</title>
 </head>
 <body>
 <div class="hrms_dept_container">
@@ -15,26 +15,26 @@
         <!-- 左侧栏 -->
         <%@ include file="./commom/leftsidebar.jsp"%>
 
-        <!-- 部门表格内容 -->
+        <!-- 教师表格内容 -->
         <div class="dept_info col-sm-10">
             <div class="panel panel-success">
                 <!-- 路径导航 -->
                 <div class="panel-heading">
                     <ol class="breadcrumb">
-                        <li><a href="#">部门管理</a></li>
-                        <li class="active">部门信息</li>
+                        <li><a href="#">教师管理</a></li>
+                        <li class="active">教师信息</li>
                     </ol>
                 </div>
                 <!-- Table -->
                 <table class="table table-bordered table-hover" id="dept_table">
                     <thead>
-                        <th>部门编号</th>
-                        <th>部门名称</th>
-                        <th>部门老大</th>
+                        <th>教师编号</th>
+                        <th>教师名称</th>
+                        <th>教师职称</th>
                         <th>操作</th>
                     </thead>
                     <tbody>
-                        <c:forEach items="${departments}" var="dept">
+                        <c:forEach items="${teachers}" var="dept">
                             <tr>
                                 <td>${dept.deptId}</td>
                                 <td>${dept.deptName}</td>
@@ -128,7 +128,7 @@
     });
 
 
-    <!-- ==========================部门删除操作=================================== -->
+    <!-- ==========================教师删除操作=================================== -->
     $(".dept_delete_btn").click(function () {
         var delDeptId = $(this).parent().parent().find("td:eq(0)").text();//表示取父节点中的改行中的索引等于0
         var delDeptName = $(this).parent().parent().find("td:eq(1)").text();

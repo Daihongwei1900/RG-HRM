@@ -2,7 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>部门新增页面</title>
+    <title>教师新增页面</title>
 </head>
 <body>
 <div class="modal fade dept-add-modal" tabindex="-1" role="dialog" aria-labelledby="dept-add-modal">
@@ -10,24 +10,24 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">部门新增</h4>
+                <h4 class="modal-title">教师新增</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal add_dept_form">
                     <div class="form-group">
-                        <label for="add_deptId" class="col-sm-2 control-label">部门编号</label>
+                        <label for="add_deptId" class="col-sm-2 control-label">教师编号</label>
                         <div class="col-sm-8">
                             <input type="text" name="deptId" class="form-control" id="add_deptId" placeholder="1">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="add_deptName" class="col-sm-2 control-label">部门名称</label>
+                        <label for="add_deptName" class="col-sm-2 control-label">教师名称</label>
                         <div class="col-sm-8">
                             <input type="text" name="deptName" class="form-control" id="add_deptName" placeholder="人事部">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="add_deptLeader" class="col-sm-2 control-label">部门老大</label>
+                        <label for="add_deptLeader" class="col-sm-2 control-label">教师职称</label>
                         <div class="col-sm-8">
                             <input type="text" name="deptLeader" class="form-control" id="add_deptLeader" placeholder="XXX">
                         </div>
@@ -43,10 +43,10 @@
 </div><!-- /.modal -->
 
 <script type="text/javascript">
-    <!-- ==========================部门新增操作=================================== -->
+    <!-- ==========================教师新增操作=================================== -->
     // 为简单操作，省去了输入名称的验证、错误信息提示等操作
-    //1 点击部门新增按钮，弹出模态框；
-    //2 输入新增部门信息，点击保存按钮，发送AJAX请求到后台进行保存；
+    //1 点击教师新增按钮，弹出模态框；
+    //2 输入新增教师信息，点击保存按钮，发送AJAX请求到后台进行保存；
     //3 保存成功跳转最后一页
     $(".dept_add_btn").click(function () {
         $('.dept-add-modal').modal({

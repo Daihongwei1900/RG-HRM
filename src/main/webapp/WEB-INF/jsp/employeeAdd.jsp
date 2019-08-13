@@ -10,7 +10,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">员工新增</h4>
+                <h4 class="modal-title">学生新增</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal add_emp_form">
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="add_department" class="col-sm-2 control-label">部门</label>
+                        <label for="add_department" class="col-sm-2 control-label">教师</label>
                         <div class="col-sm-8">
                             <div class="checkbox">
                                 <select class="form-control" name="departmentId" id="add_department">
@@ -62,9 +62,9 @@
 
 <script type="text/javascript">
 
-    <!-------------------------------------员工新增操作-------------------------------------->
-    //=======0 点击 员工新增按钮，发送AJAX请求查询部门列表信息，弹出模态框，
-    // 将查询得到的部门列表信息显示在对应模态框中部门信息处。=============================
+    <!-------------------------------------学生新增操作-------------------------------------->
+    //=======0 点击 学生新增按钮，发送AJAX请求查询教师列表信息，弹出模态框，
+    // 将查询得到的教师列表信息显示在对应模态框中教师信息处。=============================
     $(".emp_add_btn").click(function () {
 
         $.ajax({
@@ -72,7 +72,7 @@
             type:"GET",
             success:function (result) {
                 if (result.code == 100){
-                    $.each(result.extendInfo.departmentList, function () {
+                    $.each(result.extendInfo.teacherList, function () {
                         var optionEle = $("<option></option>").append(this.deptName).attr("value", this.deptId);
                         optionEle.appendTo("#add_department");
                     });
@@ -159,7 +159,7 @@
             data:$(".add_emp_form").serialize(),
             success:function (result) {
                 if (result.code == 100){
-                    alert("员工新增成功");
+                    alert("学生新增成功");
                     $('#emp-add-modal').modal("hide");
                     //跳往最后一页，由于新增记录，所以要重新查询总页数
                     $.ajax({
@@ -171,7 +171,7 @@
                         }
                     })
                 } else {
-                    alert("员工新增失败！");
+                    alert("学生新增失败！");
                 }
             }
 

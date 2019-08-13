@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hrms.mapper.StudentMapper">
+    <sql id="table_name">tbl_stu</sql>
+    <sql id="select_fields">
+      stu_id, stu_name, stu_email, stu_gender, teacher_id
+    </sql>
+    <sql id="select_withTeach_fields">
+        stu_id, stu_name, stu_email, stu_gender, teacher_id, teach_id, teach_title, teach_name
+    </sql>
+
+    <resultMap id="withTeachResultMap" type="com.hrms.bean.Student">
+        <id column="stu_id" property="stuId"></id>
+        <result column="stu_name" property="stuName"></result>
+        <result column="stu_email" property="stuEmail"></result>
+        <result column="stu_gender" property="stuGender"></result>
+        <result column="teacher_id" property="teacherId"></result>
+        <association property="teacher" column="teacher_id" javaType="com.hrms.bean.Teacher">
+            <id column="teach_id" property="teachId"></id>
+            <result column="teach_title" property="teachTitle"></result>
+            <result column="teach_name" property="teachName"></result>
+        </association>
+    </resultMap>
+
+    <select id="selectOneById" parameterType="java.lang.Integer" resultType="com.hrms.bean.Student">
+        SELECT
+        stu_id stuId, stu_name stuName, stu_email stuEmail, stu_gender, teacher_id teacherId
+        FROM
+        <include refid="table_name"/>
+        WHERE
+        stu_id = #{stuId}
+    </select>
+
+    <select id="selectOneByName" parameterType="String" resultType="com.hrms.bean.Student">
+        SELECT
+        stu_id stuId, stu_name stuName, stu_email stuEmail, stu_gender, teacher_id teacherId
+        FROM
+        <include refid="table_name"/>
+        WHERE
+        stu_name = #{stuName}
+    </select>
+
+    <select id="selectWithTeachById" parameterType="Integer"  resultMap="withTeachResultMap">
+        SELECT
+        <include refid="select_withTeach_fields"/>
+        FROM
+       tbl_stu e, tbl_teach d
+        WHERE
+        e.teacher_id = d.teach_id
+        AND
+        e.stu_id = #{stuId}
+    </select>
+
+    <select id="selectByLimitAndOffset" resultMap="withTeachResultMap">
+        SELECT
+         <include refid="select_withTeach_fields"></include>
+        FROM
+        tbl_stu e
+        LEFT JOIN
+        tbl_teach d
+        ON
+        e.teacher_id = d.teach_id
+        ORDER BY e.stu_id
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <update id="updateOneById" parameterType="com.hrms.bean.Student">
+        UPDATE
+        <include refid="table_name"/>
+        SET
+        stu_email = #{student.stuEmail, jdbcType = VARCHAR},
+        stu_gender = #{student.stuGender, jdbcType = VARCHAR},
+        teacher_id = #{student.teacherId, jdbcType = INTEGER}
+        WHERE
+        stu_id = #{stuId, jdbcType = INTEGER}
+    </update>
+</mapper>
