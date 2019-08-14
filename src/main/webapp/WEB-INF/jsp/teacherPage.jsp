@@ -5,18 +5,18 @@
     <title>教师管理页面</title>
 </head>
 <body>
-<div class="hrms_dept_container">
+<div class="hrms_teach_container">
     <!-- 导航栏-->
     <%@ include file="./commom/head.jsp"%>
 
 
     <!-- 中间部分（左侧栏+表格内容） -->
-    <div class="hrms_dept_body">
+    <div class="hrms_teach_body">
         <!-- 左侧栏 -->
         <%@ include file="./commom/leftsidebar.jsp"%>
 
         <!-- 教师表格内容 -->
-        <div class="dept_info col-sm-10">
+        <div class="teach_info col-sm-10">
             <div class="panel panel-success">
                 <!-- 路径导航 -->
                 <div class="panel-heading">
@@ -26,7 +26,7 @@
                     </ol>
                 </div>
                 <!-- Table -->
-                <table class="table table-bordered table-hover" id="dept_table">
+                <table class="table table-bordered table-hover" id="teach_table">
                     <thead>
                         <th>教师编号</th>
                         <th>教师名称</th>
@@ -34,14 +34,14 @@
                         <th>操作</th>
                     </thead>
                     <tbody>
-                        <c:forEach items="${teachers}" var="dept">
+                        <c:forEach items="${teachers}" var="teach">
                             <tr>
-                                <td>${dept.deptId}</td>
-                                <td>${dept.deptName}</td>
-                                <td>${dept.deptLeader}</td>
+                                <td>${teach.teachId}</td>
+                                <td>${teach.teachName}</td>
+                                <td>${teach.teachTitle}</td>
                                 <td>
-                                    <a href="#" role="button" class="btn btn-primary dept_edit_btn" data-toggle="modal" data-target=".dept-update-modal">编辑</a>
-                                    <a href="#" role="button" class="btn btn-danger dept_delete_btn">删除</a>
+                                    <a href="#" role="button" class="btn btn-primary teach_edit_btn" data-toggle="modal" data-target=".teach-update-modal">编辑</a>
+                                    <a href="#" role="button" class="btn btn-danger teach_delete_btn">删除</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -54,7 +54,7 @@
                     </div>
                     <nav aria-label="Page navigation" class="pull-right">
                         <ul class="pagination">
-                            <li><a href="/hrms/dept/getDeptList?pageNo=1">首页</a></li>
+                            <li><a href="/hrms/teach/getTeachList?pageNo=1">首页</a></li>
                             <c:if test="${curPageNo==1}">
                                 <li class="disabled">
                                     <a href="#" aria-label="Previous" class="prePage">
@@ -72,10 +72,10 @@
 
                             <c:forEach begin="${curPageNo-2<1?1:(curPageNo-2)}" end="${(curPageNo+2)>totalPages?totalItems:(curPageNo+2)}" step="1" var="itemPage">
                                 <c:if test="${curPageNo == itemPage}">
-                                    <li class="active"><a href="/hrms/dept/getDeptList?pageNo=${itemPage}">${itemPage}</a></li>
+                                    <li class="active"><a href="/hrms/teach/getTeachList?pageNo=${itemPage}">${itemPage}</a></li>
                                 </c:if>
                                 <c:if test="${curPageNo != itemPage}">
-                                    <li><a href="/hrms/dept/getDeptList?pageNo=${itemPage}">${itemPage}</a></li>
+                                    <li><a href="/hrms/teach/getTeachList?pageNo=${itemPage}">${itemPage}</a></li>
                                 </c:if>
                             </c:forEach>
 
@@ -93,21 +93,21 @@
                                     </a>
                                 </li>
                             </c:if>
-                            <li><a href="/hrms/dept/getDeptList?pageNo=${totalPages}">尾页</a></li>
+                            <li><a href="/hrms/teach/getTeachList?pageNo=${totalPages}">尾页</a></li>
                         </ul>
                     </nav>
                 </div>
             </div><!-- /.panel panel-success -->
-        </div><!-- /.dept_info -->
-    </div><!-- /.hrms_dept_body -->
+        </div><!-- /.teach_info -->
+    </div><!-- /.hrms_teach_body -->
 
-    <%@ include file="departmentAdd.jsp"%>
-    <%@ include file="departmentUpdate.jsp"%>
+    <%@ include file="teacherAdd.jsp"%>
+    <%@ include file="teacherUpdate.jsp"%>
 
     <!-- 尾部-->
     <%@ include file="./commom/foot.jsp"%>
 
-</div><!-- /.hrms_dept_container -->
+</div><!-- /.hrms_teach_container -->
 
 <script type="text/javascript">
     var curPageNo = ${curPageNo};
@@ -116,33 +116,33 @@
     $(".prePage").click(function () {
          if (curPageNo > 1){
              var pageNo = curPageNo - 1;
-             $(this).attr("href", "/hrms/dept/getDeptList?pageNo="+pageNo);
+             $(this).attr("href", "/hrms/teach/getTeachList?pageNo="+pageNo);
          }
     });
     //下一页
     $(".nextPage").click(function () {
         if (curPageNo < totalPages){
             var pageNo = curPageNo + 1;
-            $(this).attr("href", "/hrms/dept/getDeptList?pageNo="+pageNo);
+            $(this).attr("href", "/hrms/teach/getTeachList?pageNo="+pageNo);
         }
     });
 
 
     <!-- ==========================教师删除操作=================================== -->
-    $(".dept_delete_btn").click(function () {
-        var delDeptId = $(this).parent().parent().find("td:eq(0)").text();//表示取父节点中的改行中的索引等于0
-        var delDeptName = $(this).parent().parent().find("td:eq(1)").text();
+    $(".teach_delete_btn").click(function () {
+        var delTeachId = $(this).parent().parent().find("td:eq(0)").text();//表示取父节点中的改行中的索引等于0
+        var delTeachName = $(this).parent().parent().find("td:eq(1)").text();
         var curPageNo = ${curPageNo};
-        if (confirm("确认删除【"+ delDeptName +"】的信息吗？")){
+        if (confirm("确认删除【"+ delTeachName +"】的信息吗？")){
             $.ajax({
-                url:"/hrms/dept/delDept/"+delDeptId,
+                url:"/hrms/teach/delTeach/"+delTeachId,
                 type:"DELETE",
                 success:function (result) {
                     if (result.code == 100){
                         alert("删除成功！");
-                        window.location.href = "/hrms/dept/getDeptList?pageNo="+curPageNo;
+                        window.location.href = "/hrms/teach/getTeachList?pageNo="+curPageNo;
                     }else {
-                        alert(result.extendInfo.del_dept_error);
+                        alert(result.extendInfo.del_teach_error);
                     }
                 }
             });

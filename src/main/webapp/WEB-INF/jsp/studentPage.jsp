@@ -16,7 +16,7 @@
         <%@ include file="./commom/leftsidebar.jsp"%>
 
         <!-- 中间学生表格信息展示内容 -->
-        <div class="emp_info col-sm-10">
+        <div class="stu_info col-sm-10">
 
             <div class="panel panel-success">
                 <!-- 路径导航 -->
@@ -27,7 +27,7 @@
                     </ol>
                 </div>
                 <!-- Table -->
-                <table class="table table-bordered table-hover" id="emp_table">
+                <table class="table table-bordered table-hover" id="stu_table">
                     <thead>
                     <th>学生编号</th>
                     <th>学生姓名</th>
@@ -37,16 +37,16 @@
                     <th>操作</th>
                     </thead>
                     <tbody>
-                        <c:forEach items="${students}" var="emp">
+                        <c:forEach items="${students}" var="stu">
                             <tr>
-                                <td>${emp.empId}</td>
-                                <td>${emp.empName}</td>
-                                <td>${emp.empEmail}</td>
-                                <td>${emp.gender == "F"? "女": "男"}</td>
-                                <td>${emp.teacher.deptName}</td>
+                                <td>${stu.stuId}</td>
+                                <td>${stu.stuName}</td>
+                                <td>${stu.stuEmail}</td>
+                                <td>${stu.stuGender == "F"? "女": "男"}</td>
+                                <td>${stu.teacher.teachName}</td>
                                 <td>
-                                    <a href="#" role="button" class="btn btn-primary emp_edit_btn" data-toggle="modal" data-target=".emp-update-modal">编辑</a>
-                                    <a href="#" role="button" class="btn btn-danger emp_delete_btn">删除</a>
+                                    <a href="#" role="button" class="btn btn-primary stu_edit_btn" data-toggle="modal" data-target=".stu-update-modal">编辑</a>
+                                    <a href="#" role="button" class="btn btn-danger stu_delete_btn">删除</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -59,7 +59,7 @@
                     </div>
                     <nav aria-label="Page navigation" class="pull-right">
                         <ul class="pagination">
-                            <li><a href="/hrms/emp/getEmpList?pageNo=1">首页</a></li>
+                            <li><a href="/hrms/stu/getStuList?pageNo=1">首页</a></li>
                             <c:if test="${curPage==1}">
                                 <li class="disabled">
                                     <a href="#" aria-label="Previous" class="prePage">
@@ -77,10 +77,10 @@
 
                             <c:forEach begin="${curPage-2<1?1:(curPage-2)}" end="${(curPage+2)>totalPages?totalPages:(curPage+2)}" step="1" var="itemPage">
                                 <c:if test="${curPage == itemPage}">
-                                    <li class="active"><a href="/hrms/emp/getEmpList?pageNo=${itemPage}">${itemPage}</a></li>
+                                    <li class="active"><a href="/hrms/stu/getStuList?pageNo=${itemPage}">${itemPage}</a></li>
                                 </c:if>
                                 <c:if test="${curPage != itemPage}">
-                                    <li><a href="/hrms/emp/getEmpList?pageNo=${itemPage}">${itemPage}</a></li>
+                                    <li><a href="/hrms/stu/getStuList?pageNo=${itemPage}">${itemPage}</a></li>
                                 </c:if>
                             </c:forEach>
 
@@ -98,20 +98,19 @@
                                     </a>
                                 </li>
                             </c:if>
-                            <li><a href="/hrms/emp/getEmpList?pageNo=${totalPages}">尾页</a></li>
+                            <li><a href="/hrms/stu/getStuList?pageNo=${totalPages}">尾页</a></li>
                         </ul>
                     </nav>
                 </div>
             </div><!-- /.panel panel-success -->
-        </div><!-- /.emp_info -->
-
+        </div><!-- /.stu_info -->
         <!-- 尾部 -->
-        <%@ include file="./commom/foot.jsp"%>
     </div><!-- /.hrms_body -->
+    <%@ include file="./commom/foot.jsp"%>
 </div><!-- /.container -->
 
-<%@ include file="employeeAdd.jsp"%>
-<%@ include file="employeeUpdate.jsp"%>
+<%@ include file="studentAdd.jsp"%>
+<%@ include file="studentUpdate.jsp"%>
 
 
 <script>
@@ -122,33 +121,33 @@
         $(".prePage").click(function () {
             if (curPage > 1){
                 var pageNo = curPage-1;
-                $(this).attr("href", "/hrms/emp/getEmpList?pageNo="+pageNo);
+                $(this).attr("href", "/hrms/stu/getStuList?pageNo="+pageNo);
             }
         });
         //下一页
         $(".nextPage").click(function () {
             if (curPage < totalPages){
                 var pageNo = curPage+1;
-                $(this).attr("href", "/hrms/emp/getEmpList?pageNo="+pageNo);
+                $(this).attr("href", "/hrms/stu/getStuList?pageNo="+pageNo);
             }
         });
     })
 
     <!-- ==========================学生删除操作=================================== -->
-    $(".emp_delete_btn").click(function () {
+    $(".stu_delete_btn").click(function () {
         var curPage = ${curPage};
-        var delEmpId = $(this).parent().parent().find("td:eq(0)").text();
-        var delEmpName = $(this).parent().parent().find("td:eq(1)").text();
-        if (confirm("确认删除【" + delEmpName+ "】的信息吗？")){
+        var delStuId = $(this).parent().parent().find("td:eq(0)").text();
+        var delStuName = $(this).parent().parent().find("td:eq(1)").text();
+        if (confirm("确认删除【" + delStuName+ "】的信息吗？")){
             $.ajax({
-                url:"/hrms/emp/deleteEmp/"+delEmpId,
+                url:"/hrms/stu/deleteStu/"+delStuId,
                 type:"DELETE",
                 success:function (result) {
                     if (result.code == 100){
                         alert("删除成功！");
-                        window.location.href="/hrms/emp/getEmpList?pageNo="+curPage;
+                        window.location.href="/hrms/stu/getStuList?pageNo="+curPage;
                     }else {
-                        alert(result.extendInfo.emp_del_error);
+                        alert(result.extendInfo.stu_del_error);
                     }
                 }
             });

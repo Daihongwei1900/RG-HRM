@@ -13,6 +13,29 @@ public class Student {
 
     private Teacher teacher;
 
+    public Student(Integer stuId, String stuName, String stuEmail, String stuGender, Integer teacherId) {
+        this.stuId = stuId;
+        this.stuName = stuName;
+        this.stuEmail = stuEmail;
+        this.stuGender = stuGender;
+        this.teacherId = teacherId;
+    }
+
+    public Student() {
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "stuId=" + stuId +
+                ", stuName='" + stuName + '\'' +
+                ", stuEmail='" + stuEmail + '\'' +
+                ", stuGender='" + stuGender + '\'' +
+                ", teacherId=" + teacherId +
+                ", teacher=" + teacher +
+                '}';
+    }
+
     public Integer getStuId() {
         return stuId;
     }
@@ -37,41 +60,19 @@ public class Student {
         this.stuEmail = stuEmail;
     }
 
-    public String getGender() {
+    public String getStuGender() {
         return stuGender;
     }
 
-    public void setGender(String stuGender) {
+    public void setStuGender(String stuGender) {
         this.stuGender = stuGender;
     }
 
-    public Integer getDepartmentId() {
+    public Integer getTeacherId() {
         return teacherId;
     }
 
-    public void setDepartmentId(Integer teacherId) {
-        this.teacherId = teacherId;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "stuId=" + stuId +
-                ", stuName='" + stuName + '\'' +
-                ", stuEmail='" + stuEmail + '\'' +
-                ", stuGender='" + stuGender + '\'' +
-                ", teacherId=" + teacherId + '\'' +
-                ", teacher=" + teacher +
-                '}';
-    }
-
-    public Student() {
-    }
-    public Student(Integer stuId, String stuName, String stuEmail, String stuGender, Integer teacherId) {
-        this.stuId = stuId;
-        this.stuName = stuName;
-        this.stuEmail = stuEmail;
-        this.stuGender = stuGender;
+    public void setTeacherId(Integer teacherId) {
         this.teacherId = teacherId;
     }
 

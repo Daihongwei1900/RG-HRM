@@ -43,10 +43,9 @@ public class StudentMapperTest {
     @Test
     public void insertStusBatchTest(){
         StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
-        for (int i = 1; i < 200; i++) {
+        for (int i = 2; i < 100; i++) {
             String uid = UUID.randomUUID().toString().substring(0, 5);
             studentMapper.insertOne(new Student(i, "name_"+uid, uid+"@qq.com",  i%2==0? "F":"M", i%6+1));
-
         }
     }
 

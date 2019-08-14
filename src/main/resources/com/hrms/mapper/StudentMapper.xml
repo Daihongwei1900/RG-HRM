@@ -25,7 +25,7 @@
 
     <select id="selectOneById" parameterType="java.lang.Integer" resultType="com.hrms.bean.Student">
         SELECT
-        stu_id stuId, stu_name stuName, stu_email stuEmail, stu_gender, teacher_id teacherId
+        stu_id stuId, stu_name stuName, stu_email stuEmail, stu_gender stuGender, teacher_id teacherId
         FROM
         <include refid="table_name"/>
         WHERE
@@ -34,7 +34,7 @@
 
     <select id="selectOneByName" parameterType="String" resultType="com.hrms.bean.Student">
         SELECT
-        stu_id stuId, stu_name stuName, stu_email stuEmail, stu_gender, teacher_id teacherId
+        stu_id stuId, stu_name stuName, stu_email stuEmail, stu_gender stuGender, teacher_id teacherId
         FROM
         <include refid="table_name"/>
         WHERE

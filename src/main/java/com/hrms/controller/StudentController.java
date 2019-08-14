@@ -75,6 +75,18 @@ public class StudentController {
             return JsonMsg.success();
         }
     }
+  @RequestMapping(value = "/checkStuIdExists",method = RequestMethod.GET)
+  @ResponseBody
+    public JsonMsg checkStuIdExists(@RequestParam("stuId") Integer stuId){
+      Student student = studentService.getStuById(stuId);
+      if (student!=null){
+         return JsonMsg.fail().addInfo("stuId_reg_error","该学号已经存在！");
+      }
+      else {
+          return JsonMsg.success();
+      }
+
+    }
 
     /**
      * 新增记录后，查询最新的页数
@@ -129,7 +141,7 @@ public class StudentController {
      */
     @RequestMapping(value = "/getStuList", method = RequestMethod.GET)
     public ModelAndView getStu(@RequestParam(value = "pageNo", defaultValue = "1") Integer pageNo){
-        ModelAndView mv = new ModelAndView("stuloyeePage");
+        ModelAndView mv = new ModelAndView("studentPage");
         int limit = 5;
         // 记录的偏移量(即从第offset行记录开始查询)，
         // 如第1页是从第1行(offset=(21-1)*5=0,offset+1=0+1=1)开始查询；
@@ -146,7 +158,7 @@ public class StudentController {
         int curPage = pageNo;
 
         //将上述查询结果放到Model中，在JSP页面中可以进行展示
-        mv.addObject("stuloyees", students)
+        mv.addObject("students", students)
                 .addObject("totalItems", totalItems)
                 .addObject("totalPages", totalPages)
                 .addObject("curPage", curPage);

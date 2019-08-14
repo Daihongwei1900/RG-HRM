@@ -26,15 +26,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" id="company_logo" href="#">南京邮电大学</a>
+                <a   class="navbar-brand" si id="welcome_msg" href="#">${ sessionScope.user_msg} </a>
             </div>
 
             <div class="collapse navbar-collapse" id="hrms-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="#">公司介绍 <span class="sr-only">(current)</span>  </a>
+                        <a href="#">实验室介绍 <span class="sr-only">(current)</span>  </a>
                     </li>
-                    <li><a href="#">人力资源部</a></li>
+                    <li><a href="#">个人信息</a></li>
                     <li><a href="#">请假申请</a></li>
                     <li><a href="#">报销申请</a></li>
                     <li><a href="#">出勤记录</a></li>
@@ -63,7 +63,7 @@
 </div><!-- /.hrms_brand_nav -->
 <script type="text/javascript">
     //主页面
-    $("#company_logo").click(function () {
+    $("#welcome_msg").click(function () {
         $(this).attr("href", "/hrms/main");
     });
     //账号退出
