@@ -151,7 +151,7 @@
         //================2 对输入的姓名和邮箱格式进行验证===============
         var inputName = $("#add_inputName").val();
         var inputEmail = $("#add_inputEmail").val();
-        //验证格式。姓名：2-5位中文或6-16位英文和数字组合；
+        //验证格式。姓名：2-5位中文或3-16位英文和数字组合；
         var regName = /(^[a-zA-Z0-9_-]{3,16}$)|(^[\u2E80-\u9FFF]{2,5})/;
         var regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
         if (!regName.test(inputName)){

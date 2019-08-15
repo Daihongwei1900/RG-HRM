@@ -95,5 +95,9 @@ public class StudentMapperTest {
         System.out.println(res);
 
     }
+    @Test
+    public void updateStuPassword(){
+        int res = studentMapper.updateStuPassword("admin", 111111);
+    }
 
 }

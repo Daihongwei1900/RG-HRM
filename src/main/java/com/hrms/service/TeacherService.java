@@ -34,6 +34,7 @@ public class TeacherService {
     public Teacher getTeachById(Integer teachId){
         return teacherMapper.selectOneById(teachId);
     }
+
     public Teacher getTeachByName(String teachName){
         return teacherMapper.selectOneByName(teachName);
     }
@@ -43,4 +44,5 @@ public class TeacherService {
         return teacherMapper.selectTeachList();
     }
 
+    public int updateTeachPassword(String username,Integer password){return teacherMapper.updateTeachPassword(username,password);}
 }

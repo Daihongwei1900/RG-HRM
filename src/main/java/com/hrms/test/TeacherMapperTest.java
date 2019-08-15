@@ -80,5 +80,8 @@ public class TeacherMapperTest {
         int count = teacherMapper.countTeachs();
         System.out.println(count);
     }
-
+    @Test
+    public void updateTeachPassword(){
+        int res = teacherMapper.updateTeachPassword("admin", 111111);
+    }
 }

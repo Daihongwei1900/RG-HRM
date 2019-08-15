@@ -70,7 +70,7 @@
                                 </li>
                             </c:if>
 
-                            <c:forEach begin="${curPageNo-2<1?1:(curPageNo-2)}" end="${(curPageNo+2)>totalPages?totalItems:(curPageNo+2)}" step="1" var="itemPage">
+                            <c:forEach begin="${curPage-2<1?1:(curPage-2)}" end="${(curPage+2)>totalPages?totalPages:(curPage+2)}" step="1" var="itemPage">
                                 <c:if test="${curPageNo == itemPage}">
                                     <li class="active"><a href="/hrms/teach/getTeachList?pageNo=${itemPage}">${itemPage}</a></li>
                                 </c:if>
@@ -103,7 +103,7 @@
 
     <%@ include file="teacherAdd.jsp"%>
     <%@ include file="teacherUpdate.jsp"%>
-
+    <%@ include file="passwordUpdate.jsp"%>
     <!-- 尾部-->
     <%@ include file="./commom/foot.jsp"%>
 

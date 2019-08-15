@@ -34,6 +34,7 @@ public class StudentService {
     public int addStu(Student student){
         return studentMapper.insertOne(student);
     }
-
-
+    public int updateStuPassword(String username, Integer password) {
+        return studentMapper.updateStuPassword(username,password);
+    }
 }

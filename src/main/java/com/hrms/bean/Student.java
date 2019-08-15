@@ -10,19 +10,17 @@ public class Student {
     private String stuEmail;
     private String stuGender;
     private Integer teacherId;
+    private Integer stuPassword;
+
+    public Integer getStuPassword() {
+        return stuPassword;
+    }
+
+    public void setStuPassword(Integer stuPassword) {
+        this.stuPassword = stuPassword;
+    }
 
     private Teacher teacher;
-
-    public Student(Integer stuId, String stuName, String stuEmail, String stuGender, Integer teacherId) {
-        this.stuId = stuId;
-        this.stuName = stuName;
-        this.stuEmail = stuEmail;
-        this.stuGender = stuGender;
-        this.teacherId = teacherId;
-    }
-
-    public Student() {
-    }
 
     @Override
     public String toString() {
@@ -32,8 +30,28 @@ public class Student {
                 ", stuEmail='" + stuEmail + '\'' +
                 ", stuGender='" + stuGender + '\'' +
                 ", teacherId=" + teacherId +
-                ", teacher=" + teacher +
+                ", stuPassword=" + stuPassword +
                 '}';
+    }
+
+    public Student() {
+    }
+
+    public Student(Integer stuId, String stuName, String stuEmail, String stuGender, Integer teacherId) {
+        this.stuId = stuId;
+        this.stuName = stuName;
+        this.stuEmail = stuEmail;
+        this.stuGender = stuGender;
+        this.teacherId = teacherId;
+    }
+
+    public Student(Integer stuId, String stuName, String stuEmail, String stuGender, Integer teacherId, Integer stuPassword) {
+        this.stuId = stuId;
+        this.stuName = stuName;
+        this.stuEmail = stuEmail;
+        this.stuGender = stuGender;
+        this.teacherId = teacherId;
+        this.stuPassword = stuPassword;
     }
 
     public Integer getStuId() {

@@ -32,12 +32,12 @@
             <div class="collapse navbar-collapse" id="hrms-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="#">实验室介绍 <span class="sr-only">(current)</span>  </a>
+                        <a href="http://lrme.njupt.edu.cn/">实验室介绍 <span class="sr-only">(current)</span>  </a>
                     </li>
-                    <li><a href="#">个人信息</a></li>
-                    <li><a href="#">请假申请</a></li>
-                    <li><a href="#">报销申请</a></li>
-                    <li><a href="#">出勤记录</a></li>
+                    <li><a href="#" class="user_msg">个人信息</a></li>
+                    <li><a href="#" class="qingjia">请假申请</a></li>
+                    <li><a href="#" class="baoxiao">报销申请</a></li>
+                    <li><a href="#" class="chuqing">出勤记录</a></li>
                 </ul>
 
                 <form class="navbar-form navbar-left">
@@ -51,7 +51,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">账号管理 <span class="caret"></span></a>
                         <ul class="dropdown-menu nav nav-pills nav-stacked">
-                            <li class="active"><a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 修改信息</a></li>
+                            <li class="active"><a href="#" class="hrms_update_password" data-toggle="modal" data-target=".password-update-modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 修改密码</a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 头像更换</a></li>
                             <li><a href="#" class="hrms_logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> 账号退出</a></li>
                         </ul>
@@ -61,14 +61,28 @@
         </div><!-- /.container-fluid -->
     </nav>
 </div><!-- /.hrms_brand_nav -->
+
 <script type="text/javascript">
     //主页面
+
     $("#welcome_msg").click(function () {
         $(this).attr("href", "/hrms/main");
     });
     //账号退出
     $(".hrms_logout").click(function () {
         window.location.href = "/hrms/logout";
+    });
+    $(".qingjia").click(function () {
+        alert("该功能尚未实现");
+    });
+    $(".user_msg").click(function () {
+        alert("该功能尚未实现");
+    });
+    $(".baoxiao").click(function () {
+        alert("该功能尚未实现");
+    });
+    $(".chuqing").click(function () {
+        alert("该功能尚未实现");
     });
 </script>
 </body>

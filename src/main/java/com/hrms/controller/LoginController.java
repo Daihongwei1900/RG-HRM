@@ -42,25 +42,40 @@ public class LoginController {
      */
     @RequestMapping(value = "/dologin", method = RequestMethod.POST)
     @ResponseBody
-    public JsonMsg dologin(HttpServletRequest request ){
+    public JsonMsg dologin(HttpServletRequest request ) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         Student stuByName = studentService.getStuByName(username);
-        String stuPassword="111111";
-        String teachPassword ="888888";
         Teacher teachByName = teacherService.getTeachByName(username);
         HttpSession session = request.getSession();
-        if (stuByName!=null&&stuPassword.equals(password)){
-           session.setAttribute("user_msg","欢迎"+username+"同学");
-            return JsonMsg.success();
-        }else if(teachByName!=null&&teachPassword.equals(password)){
-            session.setAttribute("user_msg","欢迎"+username+"老师");
-            return JsonMsg.success();
-        }else {
-            return JsonMsg.fail().addInfo("login_error", "输入账号用户名与密码不匹配，请重新输入！");
-        }
-//        if (!"admin1234".equals(username + password)){
-//            return JsonMsg.fail().addInfo("login_error", "输入账号用户名与密码不匹配，请重新输入！");
+        if (stuByName != null) {
+            String stuPassword = stuByName.getStuPassword().toString();
+            if (stuPassword.equals(password)) {
+                session.setAttribute("user_msg", "欢迎" + username + "同学");
+                return JsonMsg.success();
+            } else {
+                return JsonMsg.fail().addInfo("login_error", username + "同学，你的密码输入错误！");
+            }
+        } else if (teachByName != null) {
+            String teachPassword = teachByName.getTeachPassword().toString();
+            if (teachPassword.equals(password)) {
+                session.setAttribute("user_msg", "欢迎" + username + "老师");
+                return JsonMsg.success();
+            } else {
+                return JsonMsg.fail().addInfo("login_error", username + "老师，你的密码输入错误！");
+            }
+        } else
+            return JsonMsg.fail().addInfo("login_error", "改用户不存在，请重新输入！");
+    }
+
+    @RequestMapping(value = "/getUserMsg",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonMsg getUserMsg(HttpServletRequest request){
+        String user_msg = (String) request.getSession().getAttribute("user_msg");
+        int length = user_msg.length();
+        String username=user_msg.substring(2,length-2);
+        String type = user_msg.substring(length-2,length);
+        return JsonMsg.success().addInfo("username",username).addInfo("type",type);
     }
 
     /**

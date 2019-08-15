@@ -45,7 +45,7 @@ public interface TeacherMapper {
     Teacher selectOneById(@Param("teachId") Integer teachId);
     @Select({"SELECT", SELECT_FIELDS, "FROM", TABLE_NAME, "WHERE teach_title=#{teachTitle}" })
     Teacher selectOneByTitle(@Param("teachTitle") String teachTitle);
-    @Select({"SELECT", SELECT_FIELDS, "FROM", TABLE_NAME, "WHERE teach_name=#{teachName}" })
+    @Select({"SELECT", SELECT_FIELDS,",teach_password as 'teachPassword' FROM", TABLE_NAME, "WHERE teach_name=#{teachName}" })
     Teacher selectOneByName(@Param("teachName") String teachName);
     @Select({"SELECT", SELECT_FIELDS, "FROM", TABLE_NAME})
     List<Teacher> selectTeachList();
@@ -62,5 +62,6 @@ public interface TeacherMapper {
     @Select({"SELECT COUNT(*) FROM", TABLE_NAME})
     int countTeachs();
 
-
+    @Update({"UPDATE",TABLE_NAME,"SET teach_password =#{password} where teach_name =#{username}"})
+    int updateTeachPassword(@Param("username") String username,@Param("password") Integer password);
 }

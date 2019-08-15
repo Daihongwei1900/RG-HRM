@@ -73,6 +73,10 @@
     </div><!-- /.hrms_body -->
     <!-- 尾部 -->
     <%@ include file="./commom/foot.jsp"%>
+    <%@ include file="studentAdd.jsp"%>
+    <%@ include file="teacherAdd.jsp"%>
+    <%@ include file="passwordUpdate.jsp"%>
+
 </div><!-- /.hrms_container -->
 
 </body>

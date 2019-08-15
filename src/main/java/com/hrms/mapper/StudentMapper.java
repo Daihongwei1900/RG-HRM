@@ -1,10 +1,7 @@
 package com.hrms.mapper;
 
 import com.hrms.bean.Student;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -69,4 +66,8 @@ public interface StudentMapper {
     @Select({"select count(*) from", TABLE_NAME})
     int countStus();
 
+
+
+    @Update({"update",TABLE_NAME,"set stu_password=#{password} where stu_name =#{username}"})
+    int updateStuPassword(@Param("username") String username,@Param("password") Integer password);
 }

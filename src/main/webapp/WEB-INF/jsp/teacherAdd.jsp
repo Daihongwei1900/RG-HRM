@@ -52,7 +52,7 @@
         $('.teach-add-modal').modal({
             backdrop:static,
             keyboard:true
-        });
+        })
 
     });
 

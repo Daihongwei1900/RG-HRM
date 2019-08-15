@@ -8,6 +8,15 @@ public class Teacher {
     private Integer teachId;
     private String teachTitle;
     private String teachName;
+    private Integer teachPassword;
+
+    public Integer getTeachPassword() {
+        return teachPassword;
+    }
+
+    public void setTeachPassword(Integer teachPassword) {
+        this.teachPassword = teachPassword;
+    }
 
     public Integer getTeachId() {
         return teachId;
@@ -40,6 +49,13 @@ public class Teacher {
         this.teachId = teachId;
         this.teachTitle = teachTitle;
         this.teachName = teachName;
+    }
+
+    public Teacher(Integer teachId, String teachTitle, String teachName, Integer teachPassword) {
+        this.teachId = teachId;
+        this.teachTitle = teachTitle;
+        this.teachName = teachName;
+        this.teachPassword = teachPassword;
     }
 
     @Override
