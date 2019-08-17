@@ -7,7 +7,6 @@ import com.hrms.service.TeacherService;
 import com.hrms.util.JsonMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,23 +25,26 @@ public class LoginController {
     private TeacherService teacherService;
     @Autowired
     private StudentService studentService;
+
     /**
      * 登录：跳转到登录页面
+     *
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(){
+    public String login() {
         return "login";
     }
 
     /**
-     * 对登录页面输入的用户名和密码做简单的判断
+     * 对登录页面输入的用户名和密码进行判断
+     *
      * @param request
      * @return
      */
     @RequestMapping(value = "/dologin", method = RequestMethod.POST)
     @ResponseBody
-    public JsonMsg dologin(HttpServletRequest request ) {
+    public JsonMsg dologin(HttpServletRequest request) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         Student stuByName = studentService.getStuByName(username);
@@ -68,37 +70,35 @@ public class LoginController {
             return JsonMsg.fail().addInfo("login_error", "改用户不存在，请重新输入！");
     }
 
-    @RequestMapping(value = "/getUserMsg",method = RequestMethod.GET)
+    @RequestMapping(value = "/getUserMsg", method = RequestMethod.GET)
     @ResponseBody
-    public JsonMsg getUserMsg(HttpServletRequest request){
+    public JsonMsg getUserMsg(HttpServletRequest request) {
         String user_msg = (String) request.getSession().getAttribute("user_msg");
         int length = user_msg.length();
-        String username=user_msg.substring(2,length-2);
-        String type = user_msg.substring(length-2,length);
-        return JsonMsg.success().addInfo("username",username).addInfo("type",type);
+        String username = user_msg.substring(2, length - 2);
+        String type = user_msg.substring(length - 2, length);
+        return JsonMsg.success().addInfo("username", username).addInfo("type", type);
     }
 
     /**
      * 跳转到主页面
+     *
      * @return
      */
     @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public String main(){
+    public String main() {
         return "main";
     }
 
     /**
      * 退出登录：从主页面跳转到登录页面
+     *
      * @return
      */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(){
+    public String logout() {
         return "login";
     }
-
-
-
-
 
 
 }

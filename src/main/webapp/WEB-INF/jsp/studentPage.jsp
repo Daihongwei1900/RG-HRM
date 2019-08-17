@@ -112,7 +112,9 @@
 <%@ include file="studentAdd.jsp"%>
 <%@ include file="studentUpdate.jsp"%>
 <%@ include file="passwordUpdate.jsp"%>
-
+<%@ include file="teacherAdd.jsp"%>
+<%@ include file="teacherUpdate.jsp"%>
+<%@ include file="passwordUpdate.jsp"%>
 <script>
     $(function () {
         //上一页

@@ -106,7 +106,9 @@
     <%@ include file="passwordUpdate.jsp"%>
     <!-- 尾部-->
     <%@ include file="./commom/foot.jsp"%>
-
+    <%@ include file="studentAdd.jsp"%>
+    <%@ include file="studentUpdate.jsp"%>
+    <%@ include file="passwordUpdate.jsp"%>
 </div><!-- /.hrms_teach_container -->
 
 <script type="text/javascript">
