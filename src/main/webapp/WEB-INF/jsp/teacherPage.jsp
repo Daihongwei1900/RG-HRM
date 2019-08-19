@@ -108,7 +108,6 @@
     <%@ include file="./commom/foot.jsp"%>
     <%@ include file="studentAdd.jsp"%>
     <%@ include file="studentUpdate.jsp"%>
-    <%@ include file="passwordUpdate.jsp"%>
 </div><!-- /.hrms_teach_container -->
 
 <script type="text/javascript">
@@ -132,19 +131,21 @@
 
     <!-- ==========================教师删除操作=================================== -->
     $(".teach_delete_btn").click(function () {
-        var delTeachId = $(this).parent().parent().find("td:eq(0)").text();//表示取父节点中的改行中的索引等于0
-        var delTeachName = $(this).parent().parent().find("td:eq(1)").text();
+        var deleteTeachId = $(this).parent().parent().find("td:eq(0)").text();//表示取父节点中的改行中的索引等于0
+        var deleteTeachName = $(this).parent().parent().find("td:eq(1)").text();
         var curPageNo = ${curPageNo};
-        if (confirm("确认删除【"+ delTeachName +"】的信息吗？")){
+        if (confirm("确认删除【"+ deleteTeachName +"】的信息吗？")){
             $.ajax({
-                url:"/hrms/teach/delTeach/"+delTeachId,
+                url:"/hrms/teach/deleteTeach/"+deleteTeachId,
                 type:"DELETE",
                 success:function (result) {
                     if (result.code == 100){
                         alert("删除成功！");
                         window.location.href = "/hrms/teach/getTeachList?pageNo="+curPageNo;
-                    }else {
+                    }else if (result.code==200) {
                         alert(result.extendInfo.del_teach_error);
+                    }else {
+                        alert(result.msg)
                     }
                 }
             });

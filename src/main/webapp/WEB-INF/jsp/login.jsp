@@ -36,7 +36,7 @@
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
                             <a href="javascript:void(0)" class="btn btn-lg btn-success btn-block" id='login_btn'>登录</a>
-                            <a>${ sessionScope.login_msg}</a>
+                            <span id="helpBlock_add_inputName" style="color: red " class="help-block has-error">${ sessionScope.login_msg}</span>
                         </fieldset>
                     </form>
 

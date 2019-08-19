@@ -1,3 +1,5 @@
+<%@ page import="org.junit.runner.Request" %>
+<%@ page import="org.springframework.web.context.request.SessionScope" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -70,6 +72,7 @@
     });
     //账号退出
     $(".hrms_logout").click(function () {
+        <% session.removeAttribute("login_msg");%>
         window.location.href = "/hrms/logout";
     });
     $(".qingjia").click(function () {

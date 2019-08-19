@@ -114,7 +114,6 @@
 <%@ include file="passwordUpdate.jsp"%>
 <%@ include file="teacherAdd.jsp"%>
 <%@ include file="teacherUpdate.jsp"%>
-<%@ include file="passwordUpdate.jsp"%>
 <script>
     $(function () {
         //上一页
@@ -148,8 +147,10 @@
                     if (result.code == 100){
                         alert("删除成功！");
                         window.location.href="/hrms/stu/getStuList?pageNo="+curPage;
-                    }else {
+                    }else if (result.code==200) {
                         alert(result.extendInfo.stu_del_error);
+                    }else {
+                        alert(result.msg);
                     }
                 }
             });

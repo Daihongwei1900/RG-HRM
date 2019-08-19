@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * @author Daihongwei
- * @date 2019/8/13.
+ * @date 2019/8/1.
  */
 @Controller
 @RequestMapping(value = "/hrms/stu")
@@ -26,6 +26,8 @@ public class StudentController {
      * @param stuId
      * @return
      */
+
+
     @RequestMapping(value = "/deleteStu/{stuId}", method = RequestMethod.DELETE)
     @ResponseBody
     public JsonMsg deleteStu(@PathVariable("stuId") Integer stuId){

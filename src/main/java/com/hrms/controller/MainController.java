@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @author Daihongwei
- * @date 2019/8/13.
+ * @date 2019/8/1.
  */
 @Controller
 @RequestMapping(value = "/hrms/main")
@@ -40,6 +40,7 @@ public class MainController {
                return JsonMsg.success();
             }else if (user_msg.contains("同学")){
                 studentService.updateStuPassword(username,password);
+                session.removeAttribute("user_msg");
                 return JsonMsg.success();
             }else {
                 return JsonMsg.fail().addInfo("update_password_msg","修改失败");

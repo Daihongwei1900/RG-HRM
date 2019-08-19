@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @author Daihongwei
- * @date 2019/8/13.
+ * @date 2019/8/1.
  */
 @Controller
 @RequestMapping(value = "/hrms")
@@ -67,7 +67,7 @@ public class LoginController {
                 return JsonMsg.fail().addInfo("login_error", username + "老师，你的密码输入错误！");
             }
         } else
-            return JsonMsg.fail().addInfo("login_error", "改用户不存在，请重新输入！");
+            return JsonMsg.fail().addInfo("login_error", "该用户不存在，请重新输入！");
     }
 
     @RequestMapping(value = "/getUserMsg", method = RequestMethod.GET)

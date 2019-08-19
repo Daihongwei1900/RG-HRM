@@ -2,7 +2,7 @@ package com.hrms.bean;
 
 /**
  * @author Daihongwei
- * @date 2019/8/13.
+ * @date 2019/8/1.
  */
 public class Student {
     private Integer stuId;

@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * @author Daihongwei
- * @date 2019/8/13.
+ * @date 2019/8/1.
  */
 public class JsonMsg {
 
@@ -51,6 +51,12 @@ public class JsonMsg {
         return res;
     }
 
+    public static JsonMsg limit(){
+        JsonMsg res = new JsonMsg();
+        res.setCode(300);
+        res.setMsg("未获得权限");
+        return res;
+    }
     public JsonMsg addInfo(String key, Object obj){
         this.extendInfo.put(key, obj);
         return this;

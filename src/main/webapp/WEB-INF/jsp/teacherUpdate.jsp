@@ -75,8 +75,10 @@
                 if(result.code == 100){
                     alert("更新成功！");
                     window.location.href = "/hrms/teach/getTeachList?pageNo="+curPageNo;
-                } else {
+                } else if(result.code==200){
                     alert(result.extendInfo.update_teach_error);
+                }else {
+                    alert(result.msg);
                 }
             }
 

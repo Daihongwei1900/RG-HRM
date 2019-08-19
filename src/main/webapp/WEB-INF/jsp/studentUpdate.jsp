@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Employee Update Page</title>
+    <title>Student Update Page</title>
 </head>
 <body>
 <div class="modal fade stu-update-modal" tabindex="-1" role="dialog" aria-labelledby="stu-update-modal">
@@ -30,10 +30,10 @@
                         <label class="col-sm-2 control-label">性别</label>
                         <div class="col-sm-8">
                             <label class="radio-inline">
-                                <input type="radio" name="gender" id="update_stuGender1" value="M"> 男
+                                <input type="radio" name="stuGender" id="update_stuGender1" value="M"> 男
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="gender" id="update_stuGender2" value="F"> 女
+                                <input type="radio" name="stuGender" id="update_stuGender2" value="F"> 女
                             </label>
                         </div>
                     </div>
@@ -64,11 +64,11 @@
     <!-- ==========================学生修改操作=================================== -->
     $(".stu_edit_btn").click(function () {
         //1 获取点击修改学生的id与name;
-        var updateEmpId = $(this).parent().parent().find("td:eq(0)").text();
+        var updateStuId = $(this).parent().parent().find("td:eq(0)").text();
 
         //2 根据id或name查询出对应学生信息进行回显；
         $.ajax({
-            url:"/hrms/stu/getStuById/"+updateEmpId,
+            url:"/hrms/stu/getStuById/"+updateStuId,
             type:"GET",
             success:function (result) {
                 if (result.code == 100){
@@ -97,16 +97,16 @@
 
         });
 
-        $(".stu_update_btn").attr("updateEmpId", updateEmpId);
+        $(".stu_update_btn").attr("updateStuId", updateStuId);
     });
 
 
     $(".stu_update_btn").click(function () {
-        var updateEmpId = $(this).attr("updateEmpId");
+        var updateStuId = $(this).attr("updateStuId");
         //4 进行修改，对修改的邮箱格式进行判断；
         var regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-        var updateEmpEamil = $("#update_stuEmail").val();
-        if (!regEmail.test(updateEmpEamil)){
+        var updateStuEamil = $("#update_stuEmail").val();
+        if (!regEmail.test(updateStuEamil)){
             $("#update_stuEmail").parent().parent().removeClass("has-sucess");
             $("#update_stuEmail").parent().parent().addClass("has-error");
             $("#helpBlock_update_inputEmail").text("邮箱格式不正确！");
@@ -119,7 +119,7 @@
 
         //5 点击更新按钮，发送AJAX请求到后台进行保存。
         $.ajax({
-            url:"/hrms/stu/updateEmp/"+updateEmpId,
+            url:"/hrms/stu/updateStu/"+updateStuId,
             type:"PUT",
             data:$(".update_stu_form").serialize(),
             success:function (result) {
@@ -129,8 +129,10 @@
                     //跳转到当前页
                     var curPage = ${curPage};
                     window.location.href="/hrms/stu/getStuList?pageNo="+curPage;
-                }else {
+                }else if (result.code==200) {
                     alert(result.extendInfo.stu_update_error);
+                }else {
+                    alert(result.msg);
                 }
             }
         });

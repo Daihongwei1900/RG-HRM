@@ -13,15 +13,16 @@ public class LoginInterceptor implements HandlerInterceptor {
         String uri= httpServletRequest.getRequestURI();
         if (uri.indexOf("login")>=0){
             return true;
+        }else {
+            HttpSession session = httpServletRequest.getSession();
+            String user_msg = (String) session.getAttribute("user_msg");
+            if (user_msg != null) {
+                return true;
+            }
+            session.setAttribute("login_msg", "您还没有登录，请登录！");
+            httpServletRequest.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(httpServletRequest, httpServletResponse);
+            return false;
         }
-        HttpSession session = httpServletRequest.getSession();
-        Object user_msg = session.getAttribute("user_msg");
-        if (user_msg!=null){
-            return true;
-        }
-        httpServletRequest.setAttribute("login_msg","您还没有登录，请登录！");
-        httpServletRequest.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(httpServletRequest,httpServletResponse);
-        return false;
     }
 
     @Override
