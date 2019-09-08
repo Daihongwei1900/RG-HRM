@@ -37,7 +37,7 @@ public class LoginController {
     }
 
     /**
-     * 对登录页面输入的用户名和密码进行判断
+     * 对登录页面输入的用户名和密码进行判断，并进行回显。
      *
      * @param request
      * @return
@@ -69,6 +69,12 @@ public class LoginController {
         } else
             return JsonMsg.fail().addInfo("login_error", "该用户不存在，请重新输入！");
     }
+
+    /**
+     * 返回当前用户信息
+     * @param request
+     * @return
+     */
 
     @RequestMapping(value = "/getUserMsg", method = RequestMethod.GET)
     @ResponseBody

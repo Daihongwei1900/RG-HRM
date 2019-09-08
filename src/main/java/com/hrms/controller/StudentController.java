@@ -51,6 +51,7 @@ public class StudentController {
     @ResponseBody
     public JsonMsg updateStu(@PathVariable("stuId") Integer stuId, Student student){
         int res = studentService.updateStuById(stuId, student);
+        System.out.println(res);
         if (res != 1){
             return JsonMsg.fail().addInfo("stu_update_error", "更改异常");
         }
@@ -77,6 +78,12 @@ public class StudentController {
             return JsonMsg.success();
         }
     }
+
+    /**
+     * 检查学号是否存在
+     * @param stuId
+     * @return
+     */
   @RequestMapping(value = "/checkStuIdExists",method = RequestMethod.GET)
   @ResponseBody
     public JsonMsg checkStuIdExists(@RequestParam("stuId") Integer stuId){
